@@ -1,5 +1,8 @@
 import pytest
-from ..app import crear_aplicacion
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from runapp import crear_aplicacion
 
 @pytest.fixture
 def client():
