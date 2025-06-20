@@ -19,3 +19,41 @@ def obtener_lista_productos():
         for item in registros
     ]
     return jsonify(datos)
+
+@productos_api.route("/api/productos/<int:producto_id>", methods=["GET"])
+def obtener_producto_por_id(producto_id):
+    producto = obtener_producto_por_id(producto_id)
+    if producto:
+        datos = {
+            "id": producto[0],
+            "codigo": producto[1],
+            "marca": producto[2],
+            "nombre": producto[3],
+            "precio": producto[4],
+            "modelo": producto[5],
+            "stock": producto[6]
+        }
+        return jsonify(datos)
+    else:
+        return jsonify({"error": "Producto no encontrado"}), 404
+    
+@productos_api.route("/api/productos/buscar/<string:nombre>", methods=["GET"])
+def buscar_productos_por_nombre(nombre):
+    registros = buscar_productos_por_nombre(nombre)
+    if registros:
+        datos = [
+            {
+                "id": item[0],
+                "codigo": item[1],
+                "marca": item[2],
+                "nombre": item[3],
+                "precio": item[4],
+                "modelo": item[5],
+                "stock": item[6]
+            }
+            for item in registros
+        ]
+        return jsonify(datos)
+    else:
+        return jsonify({"error": "No se encontraron productos"}), 404
+     
