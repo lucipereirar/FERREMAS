@@ -2,3 +2,16 @@ def calcular_usd_desde_clp(monto_clp):
     # Tasa ficticia, sin conexión a fuente externa
     tipo_cambio_aproximado = 950
     return round(monto_clp / tipo_cambio_aproximado, 2)
+
+def calcular_clp_desde_usd(monto_usd):
+    # Tasa ficticia, sin conexión a fuente externa
+    tipo_cambio_aproximado = 950
+    return round(monto_usd * tipo_cambio_aproximado, 2)
+
+def convertir_moneda(monto, moneda_origen, moneda_destino):
+    if moneda_origen == "CLP" and moneda_destino == "USD":
+        return calcular_usd_desde_clp(monto)
+    elif moneda_origen == "USD" and moneda_destino == "CLP":
+        return calcular_clp_desde_usd(monto)
+    else:
+        raise ValueError("Monedas no soportadas o iguales")

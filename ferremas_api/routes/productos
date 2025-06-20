@@ -56,4 +56,6 @@ def buscar_productos_por_nombre(nombre):
         return jsonify(datos)
     else:
         return jsonify({"error": "No se encontraron productos"}), 404
+    
+    
      
