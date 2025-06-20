@@ -1,0 +1,4 @@
+def calcular_usd_desde_clp(monto_clp):
+    # Tasa ficticia, sin conexión a fuente externa
+    tipo_cambio_aproximado = 950
+    return round(monto_clp / tipo_cambio_aproximado, 2)

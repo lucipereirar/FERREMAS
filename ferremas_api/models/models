@@ -1,0 +1,9 @@
+from db import conectar_bd
+
+def listar_todos_los_productos():
+    conexion = conectar_bd()
+    consulta = conexion.cursor()
+    consulta.execute("SELECT * FROM productos")
+    resultados = consulta.fetchall()
+    conexion.close()
+    return resultados

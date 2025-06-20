@@ -1,0 +1,21 @@
+from flask import Blueprint, jsonify
+from models import listar_todos_los_productos
+
+productos_api = Blueprint('productos_api', __name__)
+
+@productos_api.route("/api/productos", methods=["GET"])
+def obtener_lista_productos():
+    registros = listar_todos_los_productos()
+    datos = [
+        {
+            "id": item[0],
+            "codigo": item[1],
+            "marca": item[2],
+            "nombre": item[3],
+            "precio": item[4],
+            "modelo": item[5],
+            "stock": item[6]
+        }
+        for item in registros
+    ]
+    return jsonify(datos)

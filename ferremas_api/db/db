@@ -1,0 +1,22 @@
+import sqlite3
+
+DB_PATH = "ferremas.db"
+
+def conectar_bd():
+    return sqlite3.connect(DB_PATH)
+
+def crear_tabla_productos():
+    with conectar_bd() as conexion:
+        sql = """
+        CREATE TABLE IF NOT EXISTS productos (
+            id INTEGER PRIMARY KEY,
+            codigo TEXT,
+            marca TEXT,
+            nombre TEXT,
+            precio REAL,
+            modelo TEXT,
+            stock INTEGER
+        )
+        """
+        conexion.execute(sql)
+        conexion.commit()
