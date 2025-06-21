@@ -1,3 +1,5 @@
+import os
+from flask import Flask, send_from_directory
 from app.app import app  # ahora sí apunta correctamente
 from routes.productos import productos_api
 from routes.contacto import contacto_api
@@ -8,5 +10,16 @@ crear_tabla_productos()
 app.register_blueprint(productos_api)
 app.register_blueprint(contacto_api)
 
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+STATIC_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend'))
+
+@app.route("/")
+def root():
+    return send_from_directory(STATIC_FOLDER, "index.html")
+
+@app.route("/<path:filename>")
+def serve_static(filename):
+    return send_from_directory(STATIC_FOLDER, filename)
 if __name__ == "__main__":
+    
     app.run(debug=True)
