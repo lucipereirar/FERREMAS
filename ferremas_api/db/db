@@ -49,3 +49,11 @@ def crear_tabla_ventas():
         """
         conexion.execute(sql)
         conexion.commit()
+
+def inicializar_bd():
+    crear_tabla_productos()
+    crear_tabla_usuarios()
+    crear_tabla_ventas()
+if __name__ == "__main__":
+    inicializar_bd()
+    print("Base de datos inicializada correctamente.")

@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-import models.models as models
+import models
 
 app = Flask(__name__)
 
@@ -9,5 +9,4 @@ def listar_productos():
     return jsonify(productos)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='')
-    
+    app.run(debug=True, host=' ')

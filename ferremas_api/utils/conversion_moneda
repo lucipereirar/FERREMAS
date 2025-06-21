@@ -15,3 +15,15 @@ def convertir_moneda(monto, moneda_origen, moneda_destino):
         return calcular_clp_desde_usd(monto)
     else:
         raise ValueError("Monedas no soportadas o iguales")
+    
+def convertir_monto(monto, moneda_origen, moneda_destino):
+    try:
+        resultado = convertir_moneda(monto, moneda_origen, moneda_destino)
+        return {
+            "monto_original": monto,
+            "moneda_origen": moneda_origen,
+            "moneda_destino": moneda_destino,
+            "monto_convertido": resultado
+        }
+    except ValueError as e:
+        return {"error": str(e)}
