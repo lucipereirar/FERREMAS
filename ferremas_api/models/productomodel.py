@@ -1,4 +1,4 @@
-from db. import conectar_bd
+from db.dbproductos import conectar_bd
 
 def listar_todos_los_productos():
     conexion = conectar_bd()

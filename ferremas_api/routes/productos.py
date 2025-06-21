@@ -88,7 +88,7 @@ def eliminar_producto(producto_id):
     resultado = eliminar_producto(producto_id)
     return jsonify({"message": resultado}), 200
 
-from models import (
+from models.productomodel import (
     listar_todos_los_productos,
     obtener_producto_por_id,
     crear_producto,
