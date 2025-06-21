@@ -1,5 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request, jsonify
 from models import listar_todos_los_productos
+from flask import Request
 
 productos_api = Blueprint('productos_api', __name__)
 
@@ -56,6 +57,46 @@ def buscar_productos_por_nombre(nombre):
         return jsonify(datos)
     else:
         return jsonify({"error": "No se encontraron productos"}), 404
+    
+@productos_api.route("/api/productos", methods=["POST"])
+def crear_producto():
+    data = request.get_json()
+    nombre = data.get("nombre")
+    precio = data.get("precio")
+    descripcion = data.get("descripcion")
+    
+    if not nombre or not precio:
+        return jsonify({"error": "Nombre y precio son requeridos"}), 400
+    
+    resultado = crear_producto(nombre, precio, descripcion)
+    return jsonify({"message": resultado}), 201
+
+@productos_api.route("/api/productos/<int:producto_id>", methods=["PUT"])
+def actualizar_producto(producto_id):
+    data = request.get_json()
+    nombre = data.get("nombre")
+    precio = data.get("precio")
+    descripcion = data.get("descripcion")
+    
+    if not nombre or not precio:
+        return jsonify({"error": "Nombre y precio son requeridos"}), 400
+    
+    resultado = actualizar_producto(producto_id, nombre, precio, descripcion)
+    return jsonify({"message": resultado}), 200
+
+@productos_api.route("/api/productos/<int:producto_id>", methods=["DELETE"])
+def eliminar_producto(producto_id):
+    resultado = eliminar_producto(producto_id)
+    return jsonify({"message": resultado}), 200
+
+from models import (
+    listar_todos_los_productos,
+    obtener_producto_por_id,
+    crear_producto,
+    actualizar_producto,
+    eliminar_producto,
+    buscar_productos_por_nombre
+)
     
     
      
