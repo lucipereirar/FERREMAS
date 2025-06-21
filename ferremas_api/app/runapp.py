@@ -19,9 +19,9 @@ if __name__ == "__main__":
         count = cursor.fetchone()[0]
         if count == 0:
             cursor.execute("""
-                INSERT INTO productos (codigo, marca, nombre, precio, modelo, stock)
-                VALUES (?, ?, ?, ?, ?, ?)
-            """, ("P001", "Stanley", "Martillo", 5990, "S-21", 15))
+                INSERT INTO productos (marca, nombre, precio, modelo, stock)
+                VALUES (?, ?, ?, ?, ?)
+            """, ("Stanley", "Martillo", 5990, "S-21", 15))
             conexion.commit()
         conexion.close()
     poblar_si_vacio()
