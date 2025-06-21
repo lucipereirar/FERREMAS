@@ -13,13 +13,5 @@ app.register_blueprint(contacto_api)
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 STATIC_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend'))
 
-@app.route("/")
-def root():
-    return send_from_directory(STATIC_FOLDER, "index.html")
-
-@app.route("/<path:filename>")
-def serve_static(filename):
-    return send_from_directory(STATIC_FOLDER, filename)
-
 if __name__ == "__main__":
     app.run(debug=True)
