@@ -1,11 +1,25 @@
+import sqlite3
 from db.dbproductos import conectar_bd
 
 def listar_todos_los_productos():
     conexion = conectar_bd()
-    consulta = conexion.cursor()
-    consulta.execute("SELECT * FROM productos")
-    resultados = consulta.fetchall()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM productos")
+    productos = cursor.fetchall()
     conexion.close()
+
+    resultados = []
+    for p in productos:
+        producto = {
+            "id": p[0],
+            "codigo": p[1],
+            "marca": p[2],
+            "nombre": p[3],
+            "precio": p[4],
+            "modelo": p[5],
+            "stock": p[6]
+        }
+        resultados.append(producto)
     return resultados
 
 def obtener_producto_por_id(producto_id):
