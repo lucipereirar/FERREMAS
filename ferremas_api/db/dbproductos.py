@@ -10,7 +10,6 @@ def crear_tabla_productos():
         sql = """
         CREATE TABLE IF NOT EXISTS productos (
             id INTEGER PRIMARY KEY,
-            codigo TEXT,
             marca TEXT,
             nombre TEXT,
             precio REAL,
