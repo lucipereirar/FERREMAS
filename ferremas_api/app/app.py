@@ -13,7 +13,7 @@ app = Flask(__name__, static_folder=STATIC_FOLDER, static_url_path='')
 def root():
     return send_from_directory(STATIC_FOLDER, "index.html")
 
-# Ruta para archivos estáticos (JS, CSS, etc.)
+
 @app.route("/<path:filename>")
 def serve_static(filename):
     return send_from_directory(STATIC_FOLDER, filename)
