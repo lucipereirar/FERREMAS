@@ -9,20 +9,4 @@ app.register_blueprint(productos_api)
 app.register_blueprint(contacto_api)
 
 if __name__ == "__main__":
-
-    from db.dbproductos import conectar_bd
-
-    def poblar_si_vacio():
-        conexion = conectar_bd()
-        cursor = conexion.cursor()
-        cursor.execute("SELECT COUNT(*) FROM productos")
-        count = cursor.fetchone()[0]
-        if count == 0:
-            cursor.execute("""
-                INSERT INTO productos (marca, nombre, precio, modelo, stock)
-                VALUES (?, ?, ?, ?, ?)
-            """, ("Stanley", "Martillo", 5990, "S-21", 15))
-            conexion.commit()
-        conexion.close()
-    poblar_si_vacio()
     app.run(debug=True)
