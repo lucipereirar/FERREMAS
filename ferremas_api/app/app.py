@@ -1,16 +1,16 @@
 import os
 from flask import Flask, send_from_directory
 
-# Ruta absoluta a la carpeta frontend
+# Ruta absoluta al folder 'frontend'
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-static_folder_path = os.path.join(BASE_DIR, '..', 'frontend')
+STATIC_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend'))
 
-app = Flask(__name__, static_folder=static_folder_path, static_url_path='')
+app = Flask(__name__, static_folder=STATIC_FOLDER, static_url_path='')
 
 @app.route("/")
-def home():
-    return send_from_directory(static_folder_path, "index.html")
+def root():
+    return send_from_directory(STATIC_FOLDER, "index.html")
 
 @app.route("/<path:filename>")
-def static_files(filename):
-    return send_from_directory(static_folder_path, filename)
+def serve_static(filename):
+    return send_from_directory(STATIC_FOLDER, filename)

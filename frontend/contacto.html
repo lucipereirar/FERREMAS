@@ -1,9 +1,31 @@
 <!DOCTYPE html>
-<html lang="en"></html>
-<form id="form-contacto">
-  <input type="text" name="nombre" placeholder="Tu nombre">
-  <input type="email" name="email" placeholder="Tu correo">
-  <textarea name="mensaje" placeholder="Tu mensaje"></textarea>
-  <button type="submit">Enviar</button>
-</form>
-<script src="js/contacto.js"></script>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Contacto</title>
+  <link rel="stylesheet" href="css/estilos.css"> <!-- ENLACE CSS -->
+</head>
+<body>
+  <h1>Contacto</h1>
+
+  <form id="form-contacto">
+    <label>Nombre:
+      <input type="text" name="nombre" required>
+    </label>
+
+    <label>Email:
+      <input type="email" name="email" required>
+    </label>
+
+    <label>Mensaje:
+      <textarea name="mensaje" required></textarea>
+    </label>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p id="mensaje"></p>
+
+  <script src="js/contacto.js"></script>
+</body>
+</html>
