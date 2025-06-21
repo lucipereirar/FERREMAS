@@ -3,6 +3,8 @@ from models.productomodel import (
     listar_todos_los_productos,
     obtener_producto_por_id,
     crear_producto,
+    eliminar_producto
+)
     
 
 productos_api = Blueprint('productos_api', __name__)
@@ -25,7 +27,7 @@ def obtener_lista_productos():
     return jsonify(datos)
 
 @productos_api.route("/api/productos/<int:producto_id>", methods=["GET"])
-def obtener_producto_por_id(producto_id):
+def obtener_producto_por_id_route(producto_id):
     producto = obtener_producto_por_id(producto_id)
     if producto:
         datos = {
@@ -62,7 +64,7 @@ def buscar_productos_por_nombre(nombre):
         return jsonify({"error": "No se encontraron productos"}), 404
     
 @productos_api.route("/api/productos", methods=["POST"])
-def crear_producto():
+def crear_producto_route():
     data = request.get_json()
     nombre = data.get("nombre")
     precio = data.get("precio")
@@ -84,22 +86,10 @@ def actualizar_producto(producto_id):
     if not nombre or not precio:
         return jsonify({"error": "Nombre y precio son requeridos"}), 400
     
-    resultado = actualizar_producto(producto_id, nombre, precio, descripcion)
+    resultado = actualizar_producto(producto_id)
     return jsonify({"message": resultado}), 200
 
 @productos_api.route("/api/productos/<int:producto_id>", methods=["DELETE"])
-def eliminar_producto(producto_id):
+def eliminar_producto_route(producto_id):
     resultado = eliminar_producto(producto_id)
     return jsonify({"message": resultado}), 200
-
-from models import (
-    listar_todos_los_productos,
-    obtener_producto_por_id,
-    crear_producto,
-    actualizar_producto,
-    eliminar_producto,
-    buscar_productos_por_nombre
-)
-    
-    
-     
