@@ -28,20 +28,20 @@ def obtener_producto_por_id(producto_id):
     conexion.close()
     return resultado
 
-def crear_producto(nombre, precio, descripcion):
+def crear_producto(marca, nombre, precio, modelo, stock):
     conexion = conectar_bd()
     consulta = conexion.cursor()
     consulta.execute("INSERT INTO productos (marca, nombre, precio, modelo, stock) VALUES (?, ?, ?, ?, ?)", 
-                     (nombre, precio, descripcion))
+                     (marca, nombre, precio, modelo, stock))
     conexion.commit()
     conexion.close()
     return "Producto creado exitosamente"
 
-def actualizar_producto(producto_id, nombre, precio, descripcion):
+def actualizar_producto(producto_id, nombre, precio):
     conexion = conectar_bd()
     consulta = conexion.cursor()
     consulta.execute("UPDATE productos SET nombre = ?, precio = ?, WHERE id = ?", 
-                     (nombre, precio, descripcion, producto_id))
+                     (nombre, precio, producto_id))
     conexion.commit()
     conexion.close()
     return "Producto actualizado exitosamente"
@@ -61,14 +61,3 @@ def buscar_productos_por_nombre(nombre):
     resultados = consulta.fetchall()
     conexion.close()
     return resultados
-
-def agregar_producto(marca, nombre, precio, modelo, stock):
-    conexion = conectar_bd()
-    consulta = conexion.cursor()
-    consulta.execute("""
-        INSERT INTO productos (marca, nombre, precio, modelo, stock)
-        VALUES (?, ?, ?, ?, ?)
-    """, ( marca, nombre, precio, modelo, stock))
-    conexion.commit()
-    conexion.close()
-    return "Producto agregado exitosamente"
