@@ -1,10 +1,13 @@
 from flask import Flask
-from routes import productos_api
-import db as database
+from routes.productos import productos_api
+from routes.contacto import contacto_api
+
+
 from flask import Flask, send_from_directory
 
 app = Flask(__name__)
 app.register_blueprint(productos_api)
+app.register_blueprint(contacto_api)
 
 @app.route('/')
 def home():
