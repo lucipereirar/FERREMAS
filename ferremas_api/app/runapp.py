@@ -10,9 +10,8 @@ crear_tabla_productos()
 app.register_blueprint(productos_api)
 app.register_blueprint(contacto_api)
 
-if __name__ == "__main__":
-    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-    STATIC_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend'))
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+STATIC_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend'))
 
 @app.route("/")
 def root():
@@ -22,4 +21,5 @@ def root():
 def serve_static(filename):
     return send_from_directory(STATIC_FOLDER, filename)
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
