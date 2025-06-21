@@ -1,4 +1,3 @@
-import sqlite3
 from db.dbproductos import conectar_bd
 
 def listar_todos_los_productos():
@@ -64,3 +63,13 @@ def buscar_productos_por_nombre(nombre):
     conexion.close()
     return resultados
 
+def agregar_producto(codigo, marca, nombre, precio, modelo, stock):
+    conexion = conectar_bd()
+    consulta = conexion.cursor()
+    consulta.execute("""
+        INSERT INTO productos (codigo, marca, nombre, precio, modelo, stock)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (codigo, marca, nombre, precio, modelo, stock))
+    conexion.commit()
+    conexion.close()
+    return "Producto agregado exitosamente"

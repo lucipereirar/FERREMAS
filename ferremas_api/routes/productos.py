@@ -1,5 +1,9 @@
 from flask import Blueprint, request, jsonify
-from models.productomodel import listar_todos_los_productos
+from models.productomodel import (
+    listar_todos_los_productos,
+    obtener_producto_por_id,
+    crear_producto,
+    
 
 productos_api = Blueprint('productos_api', __name__)
 
@@ -88,7 +92,7 @@ def eliminar_producto(producto_id):
     resultado = eliminar_producto(producto_id)
     return jsonify({"message": resultado}), 200
 
-from models.productomodel import (
+from models import (
     listar_todos_los_productos,
     obtener_producto_por_id,
     crear_producto,
