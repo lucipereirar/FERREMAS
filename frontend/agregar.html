@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Producto</title>
+</head>
+<body>
+    
+  <h1>Agregar Nuevo Producto</h1>
+
+  <form id="form-agregar">
+    <label>Marca:
+      <input type="text" name="marca" required>
+    </label><br>
+
+    <label>Nombre:
+      <input type="text" name="nombre" required>
+    </label><br>
+
+    <label>Precio:
+      <input type="number" name="precio" required>
+    </label><br>
+
+    <label>Modelo:
+      <input type="text" name="modelo" required>
+    </label><br>
+
+    <label>Stock:
+      <input type="number" name="stock" required>
+    </label><br>
+
+    <button type="submit">Guardar</button>
+  </form>
+
+  <p id="mensaje"></p>
+
+  <script src="/static/js/agregar.js"></script>
+</body>
+</html>
