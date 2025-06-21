@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-
+from models.productomodel import listar_todos_los_productos
 
 productos_api = Blueprint('productos_api', __name__)
 
