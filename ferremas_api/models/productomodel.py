@@ -11,12 +11,11 @@ def listar_todos_los_productos():
     for p in productos:
         producto = {
             "id": p[0],
-            "codigo": p[1],
-            "marca": p[2],
-            "nombre": p[3],
-            "precio": p[4],
-            "modelo": p[5],
-            "stock": p[6]
+            "marca": p[1],
+            "nombre": p[2],
+            "precio": p[3],
+            "modelo": p[4],
+            "stock": p[5]
         }
         resultados.append(producto)
     return resultados
@@ -32,7 +31,7 @@ def obtener_producto_por_id(producto_id):
 def crear_producto(nombre, precio, descripcion):
     conexion = conectar_bd()
     consulta = conexion.cursor()
-    consulta.execute("INSERT INTO productos (nombre, precio, descripcion) VALUES (?, ?, ?)", 
+    consulta.execute("INSERT INTO productos (marca, nombre, precio, modelo, stock) VALUES (?, ?, ?, ?, ?)", 
                      (nombre, precio, descripcion))
     conexion.commit()
     conexion.close()
@@ -41,7 +40,7 @@ def crear_producto(nombre, precio, descripcion):
 def actualizar_producto(producto_id, nombre, precio, descripcion):
     conexion = conectar_bd()
     consulta = conexion.cursor()
-    consulta.execute("UPDATE productos SET nombre = ?, precio = ?, descripcion = ? WHERE id = ?", 
+    consulta.execute("UPDATE productos SET nombre = ?, precio = ?, WHERE id = ?", 
                      (nombre, precio, descripcion, producto_id))
     conexion.commit()
     conexion.close()
@@ -63,13 +62,13 @@ def buscar_productos_por_nombre(nombre):
     conexion.close()
     return resultados
 
-def agregar_producto(codigo, marca, nombre, precio, modelo, stock):
+def agregar_producto(marca, nombre, precio, modelo, stock):
     conexion = conectar_bd()
     consulta = conexion.cursor()
     consulta.execute("""
-        INSERT INTO productos (codigo, marca, nombre, precio, modelo, stock)
-        VALUES (?, ?, ?, ?, ?, ?)
-    """, (codigo, marca, nombre, precio, modelo, stock))
+        INSERT INTO productos (marca, nombre, precio, modelo, stock)
+        VALUES (?, ?, ?, ?, ?)
+    """, ( marca, nombre, precio, modelo, stock))
     conexion.commit()
     conexion.close()
     return "Producto agregado exitosamente"
